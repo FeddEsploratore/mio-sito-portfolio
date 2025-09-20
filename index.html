@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taraoui Fahd - Portfolio</title>
+    <style>
+        /* Stile Generale del Corpo */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #ffffff;
+            overflow: hidden; /* Evita lo scroll */
+            color: #000;
+        }
+
+        /* Contenitore Principale e Sfondo */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1589834390933-17697371391a?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        /* Sovrapposizione per scurire leggermente lo sfondo e migliorare la leggibilità */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.3); /* Leggero velo bianco */
+            z-index: -1;
+        }
+
+        /* Contenitore per le Piante decorative */
+        .plant-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Rende le immagini non cliccabili */
+            z-index: 1;
+        }
+
+        .plant {
+            position: absolute;
+            top: -20px; /* Posiziona leggermente fuori schermo in alto */
+            max-height: 90vh;
+            width: auto;
+        }
+
+        .plant.left {
+            left: -50px; /* Posiziona leggermente fuori schermo a sinistra */
+            transform: scaleX(-1); /* Specchia l'immagine orizzontalmente */
+        }
+
+        .plant.right {
+            right: -50px; /* Posiziona leggermente fuori schermo a destra */
+        }
+
+        /* Header e Navigazione */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 25px 40px;
+            box-sizing: border-box;
+            z-index: 2;
+        }
+
+        /* Finestra Funzioni a Sinistra */
+        .site-functions {
+            border: 1px solid #000;
+            padding: 15px 25px;
+            background-color: rgba(255, 255, 255, 0.8); /* Sfondo semi-trasparente */
+            border-radius: 4px;
+        }
+
+        .site-functions ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .site-functions li {
+            margin-bottom: 10px;
+        }
+
+        .site-functions a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+        }
+
+        /* Effetto hover per i link */
+        .site-functions a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #000;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .site-functions a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Finestra Login a Destra */
+        .login-section {
+            border: 1px solid #000;
+            padding: 15px 25px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .login-section button {
+            background: none;
+            border: 1px solid #000;
+            padding: 8px 16px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .login-section button:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Contenuto Centrale */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            z-index: 0;
+        }
+
+        .welcome-text {
+            font-size: 3.5rem; /* Dimensioni del testo */
+            font-weight: 600;
+            color: #000;
+            border: 2px solid #000;
+            padding: 20px 40px;
+            background-color: rgba(255, 255, 255, 0.7); /* Sfondo per leggibilità */
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-container"></div>
+    <div class="overlay"></div>
+
+    <div class="plant-container">
+        <img src="https://i.ibb.co/L5w2W5Z/plant-left.png" alt="Pianta decorativa sinistra" class="plant left">
+        <img src="https://i.ibb.co/L5w2W5Z/plant-left.png" alt="Pianta decorativa destra" class="plant right">
+    </div>
+
+    <header>
+        <div class="site-functions">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Chi Sono</a></li>
+                <li><a href="#">Progetti</a></li>
+                <li><a href="#">Contatti</a></li>
+            </ul>
+        </div>
+        <div class="login-section">
+            <button>Login</button>
+            <button>Registrati</button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1 id="changing-text" class="welcome-text">Ciao, sono Taraoui Fahd.</h1>
+    </main>
+
+    <script>
+        const textElement = document.getElementById('changing-text');
+        const languages = [
+            "Ciao, sono Taraoui Fahd.",      // Italiano
+            "Hello, I am Taraoui Fahd.",     // Inglese
+            "你好，我是 Taraoui Fahd。",     // Cinese (Mandarino)
+            "Здравствуйте, я Тарауи Фахд.", // Russo
+            "Bonjour, je suis Taraoui Fahd." // Francese
+        ];
+        let currentLanguageIndex = 0;
+
+        // Funzione per cambiare il testo ogni 3 secondi
+        setInterval(() => {
+            currentLanguageIndex = (currentLanguageIndex + 1) % languages.length;
+            textElement.textContent = languages[currentLanguageIndex];
+        }, 3000); // 3000 millisecondi = 3 secondi
+    </script>
+
+</body>
+</html>
