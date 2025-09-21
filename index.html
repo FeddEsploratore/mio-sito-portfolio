@@ -17,17 +17,53 @@
             --text-color: #212121;
             --font-heading: 'Poppins', sans-serif;
             --font-body: 'Roboto', sans-serif;
+            --green-bg-light: rgba(150, 200, 150, 0.7); /* Verde per lo sfondo semi-trasparente */
         }
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
+        /* Modifiche per lo sfondo natura */
         body {
             font-family: var(--font-body);
             color: var(--text-color);
             line-height: 1.6;
+            background: url('https://images.unsplash.com/photo-1549490349-01186717a618?q=80&w=1974&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
         }
+        
+        /* Overlay per migliorare la leggibilità */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7); /* Sfondo semi-trasparente */
+            z-index: -1;
+        }
+
+        /* Piante rampicanti laterali */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Rende lo pseudo-elemento non cliccabile */
+            background: 
+                url('https://i.imgur.com/K3V1XF2.png') no-repeat left top, /* Immagine per il lato sinistro */
+                url('https://i.imgur.com/N7H8n4A.png') no-repeat right top; /* Immagine per il lato destro */
+            background-size: 200px auto; /* Dimensioni delle piante */
+            background-position: left top, right top;
+            z-index: -1;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -117,17 +153,28 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+            /* Rimosso background-image, ora gestito dal body */
             color: white;
             padding: 80px 20px;
         }
         .hero-content h1 {
             font-size: 3.5rem;
             font-weight: 700;
+            color: black; /* Modificato per leggibilità */
         }
         .hero-content p {
             font-size: 1.2rem;
             margin-bottom: 30px;
+            color: #444; /* Modificato per leggibilità */
+        }
+
+        /* Modifiche per il titolo personalizzato */
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
         /* Card Grid (dal file style.css) */
@@ -267,6 +314,9 @@
             .footer-col {
                 margin-bottom: 20px;
             }
+            body::after {
+                background-size: 100px auto; /* Dimensioni ridotte per mobile */
+            }
         }
     </style>
 </head>
@@ -297,7 +347,7 @@
     <main>
         <section id="hero" class="hero-section">
             <div class="hero-content">
-                <h1>Il tuo progetto, il nostro capolavoro.</h1>
+                <h1 class="page-title">Sito web di Taraoui Fahd</h1>
                 <p>Creiamo esperienze digitali che lasciano il segno. Innovazione, design e tecnologia si fondono in ogni nostro lavoro.</p>
                 <a href="#services" class="btn btn-primary">Scopri di più</a>
             </div>
