@@ -1,514 +1,113 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fahd Taraoui website - Homepage</title>
-  <!-- Import Google Fonts per titoli & corpo -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="logo.svg">
-  <style>
-    :root {
-      --color-base: #f7f7fa; /* Chiaro, neutro */
-      --color-secondary: #334e68; /* Blu/grigio elegante */
-      --color-accent: #fabd04; /* Giallo dorato per CTA */
-      --color-error: #d73232;
-      --shadow-light: 0 2px 8px rgba(0,0,0,0.07);
-      --radius-soft: 16px;
-      --transition-fast: 320ms;
-      --transition-slow: 500ms;
-      --font-title: 'Montserrat', sans-serif;
-      --font-body: 'Open Sans', sans-serif;
-      --min-fontsize: 16px;
-    }
-
-    body {
-      background: var(--color-base);
-      margin: 0;
-      font-family: var(--font-body);
-      font-size: var(--min-fontsize);
-      color: var(--color-secondary);
-      line-height: 1.6;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px 5vw;
-      background: var(--color-base);
-      box-shadow: var(--shadow-light);
-    }
-    .logo {
-      height: 48px;
-      width: 48px;
-    }
-    .nav-menu {
-      display: flex;
-      list-style: none;
-      gap: 32px;
-    }
-    .nav-menu > li {
-      position: relative;
-      font-family: var(--font-title);
-      font-variant: small-caps;
-      letter-spacing: 1px;
-    }
-    .nav-menu > li > a {
-      text-decoration: none;
-      color: var(--color-secondary);
-      padding: 8px 12px;
-      transition: background var(--transition-fast);
-      border-radius: var(--radius-soft);
-    }
-    .nav-menu > li > a:hover {
-      background: var(--color-accent);
-      color: var(--color-base);
-    }
-    .dropdown {
-      display: none;
-      position: absolute;
-      left: 0; top: 40px;
-      background: white;
-      box-shadow: var(--shadow-light);
-      border-radius: var(--radius-soft);
-      min-width: 180px;
-      padding: 12px 0;
-      z-index: 10;
-    }
-    .nav-menu > li:hover .dropdown {
-      display: block;
-      animation: fadeIn var(--transition-fast);
-    }
-    @keyframes fadeIn { from{opacity:.1;} to{opacity:1;} }
-
-    .hero {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: minmax(440px, 60vh);
-      overflow: hidden;
-      margin: 0 0 48px 0;
-    }
-    .hero img, .hero video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: brightness(0.75);
-    }
-    .hero-overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(120deg, rgba(51,78,104,0.7) 0%, rgba(247,247,250,0.1) 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 5vw;
-    }
-    .hero-title {
-      font-family: var(--font-title);
-      font-size: 2.5rem;
-      color: var(--color-base);
-      margin-bottom: 8px;
-      text-shadow: 0 6px 18px rgba(0,0,0,0.2);
-    }
-    .hero-slogan {
-      font-size: 1.2rem;
-      color: var(--color-accent);
-      margin-bottom: 32px;
-      max-width: 45vw;
-      font-weight: 600;
-      background: rgba(51,78,104,0.14);
-      padding: 8px 20px;
-      border-radius: var(--radius-soft);
-    }
-    .cta-btn {
-      padding: 16px 44px;
-      font-size: 1.1rem;
-      background: var(--color-accent);
-      color: var(--color-secondary);
-      border: none;
-      border-radius: var(--radius-soft);
-      box-shadow: var(--shadow-light);
-      cursor: pointer;
-      font-family: var(--font-title);
-      font-weight: 700;
-      transition: box-shadow var(--transition-fast), background var(--transition-slow), color var(--transition-slow);
-    }
-    .cta-btn:hover {
-      background: var(--color-secondary);
-      color: var(--color-base);
-      box-shadow: 0 4px 24px rgba(51,78,104,.16);
-      transform: scale(1.05);
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 48px 5vw;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 48px;
-    }
-    section {
-      background: white;
-      border-radius: var(--radius-soft);
-      box-shadow: var(--shadow-light);
-      padding: 24px;
-    }
-    h2, h3, h4 {
-      font-family: var(--font-title);
-      margin-top: 0;
-    }
-    .icon {
-      width: 28px;
-      height: 28px;
-      vertical-align: middle;
-      margin-right: 6px;
-      fill: var(--color-secondary);
-    }
-    /* Footer */
-    footer {
-      background: var(--color-secondary);
-      color: var(--color-base);
-      padding: 36px 5vw 24px 5vw;
-      border-top-left-radius: var(--radius-soft);
-      border-top-right-radius: var(--radius-soft);
-      margin-top: 48px;
-      box-shadow: var(--shadow-light);
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 24px;
-      align-items: flex-start;
-    }
-    .footer-link, .footer-social a {
-      color: var(--color-accent);
-      text-decoration: none;
-      transition: color var(--transition-fast);
-    }
-    .footer-link:hover, .footer-social a:hover {
-      color: var(--color-base);
-    }
-    /* Responsive */
-    @media (max-width: 700px) {
-      header, main, .footer-grid {
-        flex-direction: column;
-        padding: 18px 2vw;
-      }
-      .hero-title { font-size: 1.5rem; }
-      main { grid-template-columns: 1fr; }
-    }
-    /* Popup newsletter */
-    .newsletter-popup {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(51,78,104,0.37);
-      backdrop-filter: blur(2px);
-      z-index: 1200;
-      justify-content: center; align-items: center;
-      animation: fadeIn var(--transition-fast);
-    }
-    .newsletter-popup.active {
-      display: flex;
-    }
-    .newsletter-content {
-      background: white;
-      border-radius: var(--radius-soft);
-      box-shadow: 0 8px 32px rgba(51,78,104,0.23);
-      padding: 36px 32px 24px 32px;
-      min-width: 330px;
-      position: relative;
-      text-align: center;
-    }
-    .close-popup {
-      position: absolute;
-      top: 16px; right: 18px;
-      background: none;
-      border: none;
-      font-size: 1.4rem;
-      color: var(--color-accent);
-      cursor: pointer;
-    }
-    /* Chat flottante */
-    .chat-floating {
-      position: fixed;
-      bottom: 32px; right: 32px;
-      z-index: 999;
-    }
-    .chat-btn {
-      background: var(--color-accent);
-      border: none;
-      border-radius: 50%;
-      box-shadow: var(--shadow-light);
-      width: 56px; height: 56px;
-      cursor: pointer;
-      display: flex;
-      align-items: center; justify-content: center;
-      transition: background var(--transition-fast);
-    }
-    .chat-btn:hover {
-      background: var(--color-secondary);
-    }
-
-    /* Login/Iscrizione */
-    .auth-form {
-      background: white;
-      border-radius: var(--radius-soft);
-      box-shadow: var(--shadow-light);
-      padding: 32px;
-      max-width: 370px;
-      margin: 48px auto;
-      display: flex; flex-direction: column;
-    }
-    .auth-form label {
-      margin-bottom: 9px;
-      font-family: var(--font-title);
-      font-size: 1rem;
-    }
-    .auth-form input {
-      padding: 14px;
-      font-size: 1rem;
-      border: 1px solid #ddd;
-      border-radius: var(--radius-soft);
-      margin-bottom: 18px;
-    }
-    .auth-form .error-msg {
-      color: var(--color-error);
-      font-size: 0.95rem;
-      margin-bottom: 8px;
-      margin-top: -10px;
-    }
-    .auth-form .cta-btn {
-      margin-top: 14px;
-    }
-    .social-login {
-      display: flex;
-      gap: 18px;
-      margin-top: 8px;
-    }
-    .checkbox-group {
-      margin-bottom: 12px;
-    }
-    /* Modale */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1300;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(51,78,104,0.27);
-      backdrop-filter: blur(2px);
-      justify-content: center; align-items: center;
-      animation: fadeIn var(--transition-fast);
-    }
-    .modal.active {
-      display: flex;
-    }
-    .modal-content {
-      background: white;
-      border-radius: var(--radius-soft);
-      padding: 32px;
-      box-shadow: 0 8px 32px rgba(51,78,104,0.23);
-      position: relative;
-      min-width: 280px;
-    }
-    .close-modal {
-      position: absolute;
-      right: 12px; top: 12px;
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      color: var(--color-accent);
-      cursor: pointer;
-    }
-    /* Slideshow esempio */
-    .carousel {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      border-radius: var(--radius-soft);
-      box-shadow: var(--shadow-light);
-    }
-    .carousel-slides { display: flex; transition: transform var(--transition-slow);}
-    .carousel-slide { min-width: 100%; }
-    .carousel-nav {
-      position: absolute;
-      right: 10px; bottom: 10px;
-      display: flex; gap: 6px;
-    }
-    .carousel-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--color-accent);
-      opacity: .7;
-      border: none; cursor: pointer;
-    }
-    .carousel-dot.active { opacity: 1; background: var(--color-secondary) }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nome Sito Web | Eleganza e Professionalità</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-  <header>
-    <img src="logo.svg" alt="Logo Brand" class="logo">
-    <nav>
-      <ul class="nav-menu">
-        <li><a href="index.html">HOME</a></li>
-        <li>
-          <a href="#">SERVIZI/PRODOTTI</a>
-          <ul class="dropdown">
-            <li><a href="#">Servizio 1</a></li>
-            <li><a href="#">Prodotto A</a></li>
-            <li><a href="#">Prodotto B</a></li>
-          </ul>
-        </li>
-        <li><a href="chi-siamo.html">CHI SIAMO</a></li>
-        <li><a href="contatti.html">CONTATTI</a></li>
-        <li>
-          <a href="login.html">LOGIN</a> /
-          <a href="registrati.html">REGISTRATI</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <div class="hero">
-    <img src="hero.webp" alt="Immagine hero professionale">
-    <div class="hero-overlay">
-      <h1 class="hero-title">Soluzioni digitali per la tua crescita</h1>
-      <div class="hero-slogan">Innovazione, semplicità ed eleganza per aziende e professionisti che vogliono distinguersi.</div>
-      <button class="cta-btn" onclick="showNewsletter()">Iscriviti subito</button>
-    </div>
-  </div>
-  <main>
-    <section>
-      <h2><svg class="icon"><use xlink:href="icons.svg#star"/></svg>Servizi principali</h2>
-      <p>Assistenza, consulenza, sviluppo personalizzato per la tua impresa.</p>
-    </section>
-    <section>
-      <h2><svg class="icon"><use xlink:href="icons.svg#design"/></svg>I nostri prodotti</h2>
-      <div class="carousel">
-        <div class="carousel-slides">
-          <div class="carousel-slide"><img src="prodotto1.webp" style="width:100%" alt="Prodotto 1"></div>
-          <div class="carousel-slide"><img src="prodotto2.webp" style="width:100%" alt="Prodotto 2"></div>
-          <div class="carousel-slide"><img src="prodotto3.webp" style="width:100%" alt="Prodotto 3"></div>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="img/logo.svg" alt="Logo Aziendale">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">SERVIZI</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Sviluppo Web</a></li>
+                            <li><a href="#">Design Grafico</a></li>
+                            <li><a href="#">Marketing Digitale</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">CHI SIAMO</a></li>
+                    <li><a href="#">CONTATTI</a></li>
+                    <li class="login-link"><a href="login.html">LOGIN / REGISTRATI</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="carousel-nav">
-          <button class="carousel-dot active"></button>
-          <button class="carousel-dot"></button>
-          <button class="carousel-dot"></button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content container">
+                <h1>Eleganza e Funzionalità Unite</h1>
+                <p>Creiamo soluzioni digitali che lasciano il segno, con un design pulito e un'esperienza utente impeccabile.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Scopri i nostri servizi</a>
+                    <a href="#" class="btn btn-secondary">Contattaci subito</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-section container">
+            <h2>I nostri punti di forza</h2>
+            <p>Qui puoi aggiungere altri contenuti della tua homepage.</p>
+            <div class="grid-example">
+                <div>Elemento 1</div>
+                <div>Elemento 2</div>
+                <div>Elemento 3</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Link Rapidi</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Servizi</a></li>
+                        <li><a href="#">Chi Siamo</a></li>
+                        <li><a href="#">Contatti</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contatti</h4>
+                    <p>Via Roma, 123<br>00100 Roma (RM)<br>Email: info@nomesito.it<br>Tel: 06 1234567</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Seguici su</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nome Sito S.R.L. | P.IVA 12345678901 | <a href="#">Privacy Policy</a> | <a href="#">Cookie Policy</a></p>
+            </div>
         </div>
-      </div>
-    </section>
-    <section>
-      <h2><svg class="icon"><use xlink:href="icons.svg#team"/></svg>Chi siamo</h2>
-      <p>Siamo un team di esperti con passione per nuove tecnologie e la soddisfazione del cliente.</p>
-    </section>
-  </main>
+    </footer>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-grid">
-      <div>
-        <h3>Contatti</h3>
-        <p>Email: info@brand.it<br>Telefono: +39 0123 456789</p>
-      </div>
-      <div>
-        <h3>Link rapidi</h3>
-        <a class="footer-link" href="servizi.html">Servizi</a><br>
-        <a class="footer-link" href="prodotti.html">Prodotti</a><br>
-        <a class="footer-link" href="login.html">Login</a>
-      </div>
-      <div>
-        <h3>Social</h3>
-        <div class="footer-social">
-          <a href="#"><svg class="icon"><use xlink:href="icons.svg#instagram"/></svg></a>
-          <a href="#"><svg class="icon"><use xlink:href="icons.svg#linkedin"/></svg></a>
-          <a href="#"><svg class="icon"><use xlink:href="icons.svg#github"/></svg></a>
+    <div id="newsletter-popup" class="popup-overlay" style="display:none;">
+        <div class="popup-content">
+            <button class="close-btn" onclick="this.parentElement.parentElement.style.display='none'">&times;</button>
+            <h3>Iscriviti alla nostra Newsletter</h3>
+            <p>Rimani aggiornato sulle ultime novità e promozioni.</p>
+            <form>
+                <input type="email" placeholder="La tua email" required>
+                <button type="submit" class="btn btn-primary">Iscriviti</button>
+            </form>
         </div>
-      </div>
-      <div>
-        <h3>Privacy</h3>
-        <a class="footer-link" href="privacy.html">Privacy Policy</a>
-      </div>
     </div>
-    <p style="margin-top:24px;font-size:0.9rem;">&copy; 2025 Brand Srl</p>
-  </footer>
 
-  <!-- Popup newsletter -->
-  <div class="newsletter-popup" id="newsletterPopup">
-    <div class="newsletter-content">
-      <button class="close-popup" onclick="closeNewsletter()">&times;</button>
-      <h3>Iscriviti alla Newsletter</h3>
-      <p>Ricevi aggiornamenti, offerte e novità esclusivi.</p>
-      <input type="email" placeholder="La tua email">
-      <button class="cta-btn">Iscriviti</button>
+    <div class="chat-widget">
+        <i class="fas fa-comment-dots"></i>
     </div>
-  </div>
-
-  <!-- Chat flottante -->
-  <div class="chat-floating">
-    <button class="chat-btn" onclick="showChatModal()">
-      <svg class="icon"><use xlink:href="icons.svg#chat"/></svg>
-    </button>
-  </div>
-  <div class="modal" id="chatModal">
-    <div class="modal-content">
-      <button class="close-modal" onclick="closeChatModal()">&times;</button>
-      <h4>Contattaci ora</h4>
-      <form>
-        <input type="text" placeholder="Il tuo nome">
-        <input type="email" placeholder="La tua email">
-        <textarea placeholder="Messaggio"></textarea>
-        <button class="cta-btn">Invia</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Login ed iscrizione esempio -->
-  <!-- Da posizionare in login.html o registrati.html -->
-  <form class="auth-form">
-    <label for="email">Email o username</label>
-    <input type="email" id="email" required>
-    <div class="error-msg" style="display:none;">Email non valida</div>
-
-    <label for="password">Password</label>
-    <input type="password" id="password" required>
-    <div class="error-msg" style="display:none;">Password troppo corta</div>
-    <div class="checkbox-group">
-      <input type="checkbox" id="showPassword"><label for="showPassword"> Mostra/Nascondi password</label>
-    </div>
-    <a href="#" style="color:var(--color-accent);font-size:0.92rem;">Recupera password</a>
-    <button type="submit" class="cta-btn">Accedi</button>
-    <div class="social-login">
-      <button><svg class="icon"><use xlink:href="icons.svg#google"/></svg></button>
-      <button><svg class="icon"><use xlink:href="icons.svg#linkedin"/></svg></button>
-      <button><svg class="icon"><use xlink:href="icons.svg#github"/></svg></button>
-    </div>
-    <div class="checkbox-group">
-      <input type="checkbox" id="terms" required><label for="terms"> Accetto termini e privacy policy</label>
-    </div>
-  </form>
-
-  <!-- JS interattivo minimale -->
-  <script>
-    function showNewsletter() { document.getElementById('newsletterPopup').classList.add('active'); }
-    function closeNewsletter() { document.getElementById('newsletterPopup').classList.remove('active'); }
-    function showChatModal() { document.getElementById('chatModal').classList.add('active'); }
-    function closeChatModal() { document.getElementById('chatModal').classList.remove('active'); }
-
-    // Carousel interattivo minimale
-    document.querySelectorAll('.carousel-dot').forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        document.querySelector('.carousel-slides').style.transform = `translateX(-${idx * 100}%)`;
-        document.querySelectorAll('.carousel-dot').forEach(d => d.classList.remove('active'));
-        dot.classList.add('active');
-      });
-    });
-  </script>
 </body>
 </html>
