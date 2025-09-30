@@ -3,111 +3,568 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome Sito Web | Eleganza e Professionalità</title>
-    
-    <link rel="stylesheet" href="css/style.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
-<body>
+    <title>Il Futuro, Semplificato.</title>
+    <!-- Caricamento di Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Caricamento delle icone Lucide (futuristico e line-art) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Definizione della palette scura dominante */
+        :root {
+            --color-bg-deep: #050A15; /* Blu notte profondo */
+            --color-accent: #00FFFF; /* Ciano elettrico */
+            --color-text-light: #F5F5F5; /* Bianco quasi puro */
+            --color-dark-surface: #0A1220;
+            --color-glow: rgba(0, 255, 255, 0.6); /* Glow per Gemini features */
+        }
 
-    <header class="main-header">
-        <div class="container">
-            <a href="index.html" class="logo">
-                <img src="img/logo.svg" alt="Logo Aziendale">
-            </a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html">HOME</a></li>
-                    <li class="has-dropdown">
-                        <a href="#">SERVIZI</a>
-                        <ul class="dropdown">
-                            <li><a href="#">Sviluppo Web</a></li>
-                            <li><a href="#">Design Grafico</a></li>
-                            <li><a href="#">Marketing Digitale</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">CHI SIAMO</a></li>
-                    <li><a href="#">CONTATTI</a></li>
-                    <li class="login-link"><a href="login.html">LOGIN / REGISTRATI</a></li>
-                </ul>
+        /* Stili per il fondo animato (alternativa al video 4K/canvas 3D) */
+        .animated-background {
+            background: linear-gradient(-45deg, var(--color-bg-deep) 0%, #152030 50%, var(--color-bg-deep) 100%);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Stile per l'header con effetto blur allo scroll (gestito da JS) */
+        .header-scrolled {
+            background-color: rgba(10, 18, 30, 0.7); /* Blu notte semi-trasparente */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease;
+        }
+
+        /* Stile custom per la CTA per l'effetto hover luminoso e morbido */
+        .cta-button {
+            border: 2px solid var(--color-accent);
+            color: var(--color-accent);
+            background-color: transparent;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 0px var(--color-accent);
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-accent);
+            color: var(--color-bg-deep);
+            box-shadow: 0 0 15px var(--color-accent); /* Leggero glow */
+        }
+        
+        /* Stile specifico per i pulsanti Gemini */
+        .gemini-button {
+            background-color: transparent;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            box-shadow: 0 0 5px var(--color-accent);
+            transition: all 0.3s ease-in-out;
+        }
+        .gemini-button:hover {
+            background-color: var(--color-accent);
+            color: var(--color-bg-deep);
+            box-shadow: 0 0 20px var(--color-glow);
+        }
+        
+
+        /* Stile per la modale di Iscrizione/Login */
+        .modal-container {
+            /* Animazione di apertura: Fade-in e scale-up */
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .modal-closed {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+
+        .modal-open {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        /* Tailwind Configuration per font (simula un font geometrico moderno) */
+        .font-headline {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.05em;
+        }
+    </style>
+</head>
+<body class="bg-[--color-bg-deep] text-[--color-text-light] min-h-screen animated-background">
+
+    <!-- Header di Navigazione (Sticky) -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo Minimalista (SVG style) -->
+            <div class="text-2xl font-bold font-headline text-[--color-text-light] hover:text-[--color-accent] transition-colors duration-300 cursor-pointer">
+                // NOVA
+            </div>
+
+            <!-- Menu Desktop e CTA Accedi -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm">
+                <a href="#prodotti" class="hover:text-[--color-accent] transition-colors duration-300">Prodotti</a>
+                <a href="#chi-siamo" class="hover:text-[--color-accent] transition-colors duration-300">Chi Siamo</a>
+                <a href="#ai-tools" class="hover:text-[--color-accent] transition-colors duration-300">AI Tools</a>
+                <a href="#contatti" class="hover:text-[--color-accent] transition-colors duration-300">Contatti</a>
+                <!-- Accesso Modale -->
+                <button onclick="toggleModal(true)" class="py-2 px-4 rounded-full border border-transparent hover:border-[--color-accent] transition-colors duration-300 text-[--color-text-light]">
+                    Accedi
+                </button>
             </nav>
+
+            <!-- Icona Hamburger (Mobile) -->
+            <button class="md:hidden text-2xl" onclick="showMessage('Menu a schermo intero simulato!')">
+                <i data-lucide="menu"></i>
+            </button>
         </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="hero-overlay"></div>
-            <div class="hero-content container">
-                <h1>Eleganza e Funzionalità Unite</h1>
-                <p>Creiamo soluzioni digitali che lasciano il segno, con un design pulito e un'esperienza utente impeccabile.</p>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary">Scopri i nostri servizi</a>
-                    <a href="#" class="btn btn-secondary">Contattaci subito</a>
-                </div>
-            </div>
-        </section>
+    <!-- 1. Schermata Iniziale (Above the Fold) -->
+    <main class="min-h-screen flex items-center justify-center p-4">
+        <div class="max-w-6xl mx-auto grid grid-cols-12 gap-4 text-center md:text-left pt-20">
+            <!-- Contenuto Centrale (Occupazione 12 colonne su mobile, 8 centrali su desktop) -->
+            <div class="col-span-12 md:col-start-3 md:col-span-8 space-y-8">
+                <!-- Titolo (Headline) -->
+                <h1 class="text-7xl sm:text-8xl lg:text-[100px] font-extrabold font-headline leading-tight">
+                    Il Futuro, <br class="hidden sm:block"> Semplificato.
+                </h1>
+                <!-- Sottotitolo -->
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto md:mx-0">
+                    Ridefiniamo l'interazione digitale con soluzioni all'avanguardia e un design senza precedenti.
+                </p>
 
-        <section class="page-section container">
-            <h2>I nostri punti di forza</h2>
-            <p>Qui puoi aggiungere altri contenuti della tua homepage.</p>
-            <div class="grid-example">
-                <div>Elemento 1</div>
-                <div>Elemento 2</div>
-                <div>Elemento 3</div>
+                <!-- CTA Primaria -->
+                <button class="cta-button py-3 px-8 rounded-lg font-bold uppercase tracking-widest text-sm mt-8" onclick="document.getElementById('mock-section').scrollIntoView({ behavior: 'smooth' });">
+                    Scopri di Più
+                </button>
             </div>
-        </section>
+        </div>
     </main>
 
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h4>Link Rapidi</h4>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Servizi</a></li>
-                        <li><a href="#">Chi Siamo</a></li>
-                        <li><a href="#">Contatti</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Contatti</h4>
-                    <p>Via Roma, 123<br>00100 Roma (RM)<br>Email: info@nomesito.it<br>Tel: 06 1234567</p>
-                </div>
-                <div class="footer-column">
-                    <h4>Seguici su</h4>
-                    <div class="social-icons">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <!-- 2. Sezione Esempio per lo Scroll (Simulazione contenuto) -->
+    <section id="mock-section" class="py-32 bg-[--color-dark-surface] shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-5xl font-headline font-bold mb-12 text-center text-[--color-accent]">
+                Tecnologia Emozionale
+            </h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Card 1 (Interazione e Immagine Futuristica) -->
+                <div class="group bg-gray-900/50 p-6 rounded-xl overflow-hidden hover:shadow-[0_0_20px_0_rgba(0,255,255,0.4)] transition-all duration-500 cursor-pointer">
+                    <div class="relative overflow-hidden rounded-lg">
+                        <!-- Immagine con ottimizzazione e interazione simulata -->
+                        <img src="https://placehold.co/800x600/18253d/F5F5F5?text=AI+Design" alt="Arte AI astratta" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/800x600/000000/00FFFF?text=Abstract+Art';">
+                        <div class="absolute inset-0 bg-gray-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center text-sm font-bold text-[--color-accent]">
+                            Vedi Dettagli
+                        </div>
                     </div>
+                    <h3 class="text-2xl mt-4 font-headline text-[--color-text-light]">Interfaccia Neutrale</h3>
+                    <p class="text-gray-400 mt-2 text-sm">Design minimalista basato sui principi di WebAuthn e Magic Link per un accesso senza attrito.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="group bg-gray-900/50 p-6 rounded-xl hover:shadow-[0_0_20px_0_rgba(0,255,255,0.4)] transition-all duration-500 cursor-pointer">
+                    <div class="text-4xl text-[--color-accent] mb-4"><i data-lucide="cloud"></i></div>
+                    <h3 class="text-2xl font-headline text-[--color-text-light]">Infrastruttura Liquida</h3>
+                    <p class="text-gray-400 mt-2 text-sm">Piattaforme modulari che si adattano dinamicamente alle tue esigenze, garantendo scalabilità immediata.</p>
+                    <div class="h-1 w-1/4 bg-[--color-accent] mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <!-- Card 3 -->
+                <div class="group bg-gray-900/50 p-6 rounded-xl hover:shadow-[0_0_20px_0_rgba(0,255,255,0.4)] transition-all duration-500 cursor-pointer">
+                    <div class="text-4xl text-[--color-accent] mb-4"><i data-lucide="zap"></i></div>
+                    <h3 class="text-2xl font-headline text-[--color-text-light]">Velocità Massima</h3>
+                    <p class="text-gray-400 mt-2 text-sm">Ogni micro-interazione è ottimizzata per garantire transizioni fluide e immediate su ogni dispositivo.</p>
+                    <div class="h-1 w-1/4 bg-[--color-accent] mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Nome Sito S.R.L. | P.IVA 12345678901 | <a href="#">Privacy Policy</a> | <a href="#">Cookie Policy</a></p>
+        </div>
+    </section>
+
+    <!-- 3. NUOVA SEZIONE: Micro-Servizi Gemini AI -->
+    <section id="ai-tools" class="py-32 bg-[--color-bg-deep] border-t border-gray-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-5xl font-headline font-bold mb-6 text-center text-[--color-text-light]">
+                Strumenti ✨ NOVA AI
+            </h2>
+            <p class="text-lg text-gray-400 text-center mb-12">
+                Inserisci una bozza o un'idea e lascia che Gemini la trasformi, la sintetizzi o la espanda con precisione futuristica.
+            </p>
+
+            <!-- Area di Input e Output -->
+            <div class="space-y-6">
+                <!-- Input Utente -->
+                <textarea id="ai-input-text" rows="6" placeholder="Inserisci qui il testo da ottimizzare o espandere..."
+                    class="w-full p-4 bg-[--color-dark-surface] border border-gray-700 rounded-lg focus:ring-[--color-accent] focus:border-[--color-accent] outline-none transition-all text-gray-200 resize-none">Il nostro nuovo prodotto è molto buono e risolve problemi vecchi, ma ha bisogno di un lancio moderno per il futuro. Vogliamo comunicare semplicità e potenza.</textarea>
+
+                <!-- Pulsanti Azione Gemini -->
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button class="gemini-button w-full py-3 rounded-lg font-bold uppercase text-sm flex items-center justify-center" onclick="generateContent('optimize')">
+                        <i data-lucide="sparkles" class="w-4 h-4 mr-2"></i> ✨ Sintetizza e Ottimizza
+                    </button>
+                    <button class="gemini-button w-full py-3 rounded-lg font-bold uppercase text-sm flex items-center justify-center" onclick="generateContent('continue')">
+                        <i data-lucide="arrow-down-square" class="w-4 h-4 mr-2"></i> ✨ Continua la Bozza
+                    </button>
+                </div>
+                
+                <!-- Placeholder per Caricamento -->
+                <div id="loading-indicator" class="hidden text-center text-[--color-accent] py-4">
+                    <i data-lucide="loader-circle" class="w-6 h-6 animate-spin inline-block mr-2"></i>
+                    Elaborazione...
+                </div>
+
+                <!-- Output Gemini -->
+                <div id="ai-output-area" class="bg-[--color-dark-surface] border border-gray-700 rounded-lg p-4 min-h-[100px] whitespace-pre-wrap text-gray-300">
+                    <!-- Il risultato dell'AI apparirà qui -->
+                    Risultato dell'elaborazione AI.
+                </div>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <div id="newsletter-popup" class="popup-overlay" style="display:none;">
-        <div class="popup-content">
-            <button class="close-btn" onclick="this.parentElement.parentElement.style.display='none'">&times;</button>
-            <h3>Iscriviti alla nostra Newsletter</h3>
-            <p>Rimani aggiornato sulle ultime novità e promozioni.</p>
-            <form>
-                <input type="email" placeholder="La tua email" required>
-                <button type="submit" class="btn btn-primary">Iscriviti</button>
-            </form>
+    <!-- 4. Finestra Modale (Login / Iscrizione) -->
+    <!-- Overlay di sfondo (si oscura al 70%) -->
+    <div id="auth-modal-overlay" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center modal-closed" onclick="toggleModal(false)">
+        
+        <!-- Contenitore della Modale (Impedisce la chiusura cliccando all'interno) -->
+        <div id="auth-modal" class="bg-[--color-dark-surface] p-8 sm:p-10 rounded-xl w-full max-w-md mx-4 modal-container modal-closed" onclick="event.stopPropagation()">
+            
+            <!-- Icona di Chiusura Minimalista -->
+            <button onclick="toggleModal(false)" class="absolute top-4 right-4 text-gray-400 hover:text-[--color-accent] transition-colors">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            
+            <!-- Intestazione con Tab -->
+            <div class="border-b border-gray-700 mb-6 flex justify-around">
+                <button id="tab-login" onclick="setTab('login')" class="pb-3 px-4 font-semibold text-lg transition-colors duration-300 text-[--color-accent] border-b-2 border-[--color-accent]">
+                    Login
+                </button>
+                <button id="tab-signup" onclick="setTab('signup')" class="pb-3 px-4 font-semibold text-lg transition-colors duration-300 text-gray-500 border-b-2 border-transparent hover:text-[--color-text-light]">
+                    Iscriviti
+                </button>
+            </div>
+
+            <!-- Contenuto della Modale (Form) -->
+            <div id="modal-content">
+
+                <!-- 4.1. SCHERMATA LOGIN -->
+                <div id="form-login" class="space-y-6">
+                    <h3 class="text-2xl font-headline text-center">Accedi al Portale</h3>
+                    
+                    <!-- Campi Login -->
+                    <input type="email" placeholder="Email" class="w-full p-3 bg-[--color-bg-deep] border border-gray-700 rounded-lg focus:ring-[--color-accent] focus:border-[--color-accent] outline-none transition-all" required>
+                    <input type="password" placeholder="Password" class="w-full p-3 bg-[--color-bg-deep] border border-gray-700 rounded-lg focus:ring-[--color-accent] focus:border-[--color-accent] outline-none transition-all" required>
+
+                    <!-- Opzioni Aggiuntive -->
+                    <div class="flex justify-between items-center text-sm text-gray-400">
+                        <div class="flex items-center">
+                            <input id="stay-logged" type="checkbox" class="w-4 h-4 text-[--color-accent] bg-gray-700 border-gray-600 rounded focus:ring-[--color-accent] mr-2">
+                            <label for="stay-logged" class="cursor-pointer">Resta connesso</label>
+                        </div>
+                        <a href="#" class="hover:text-[--color-accent] transition-colors">Password dimenticata?</a>
+                    </div>
+                    
+                    <!-- Pulsante ACCEDI -->
+                    <button class="cta-button w-full py-3 rounded-lg font-bold uppercase tracking-widest text-sm" onclick="showMessage('Login simulato!')">
+                        Accedi
+                    </button>
+                    
+                    <!-- Magic Link / WebAuthn Tocco futuristico -->
+                    <button class="w-full py-3 bg-transparent text-gray-400 hover:text-[--color-accent] border border-gray-700 rounded-lg transition-all text-sm flex items-center justify-center space-x-2">
+                        <i data-lucide="fingerprint" class="w-5 h-5"></i>
+                        <span>Accedi con Impronta Digitale (Passkey)</span>
+                    </button>
+                </div>
+
+                <!-- 4.2. SCHERMATA ISCRIZIONE (Hidden by default) -->
+                <div id="form-signup" class="space-y-6 hidden">
+                    <h3 class="text-2xl font-headline text-center">Crea un Account NOVA</h3>
+
+                    <!-- Social Login Minimalista -->
+                    <div class="flex justify-center space-x-4">
+                        <button class="p-3 bg-gray-800 rounded-full hover:bg-[--color-accent] hover:text-[--color-bg-deep] transition-all" onclick="showMessage('Accesso con Google simulato')">
+                            <i data-lucide="chrome" class="w-5 h-5"></i>
+                        </button>
+                        <button class="p-3 bg-gray-800 rounded-full hover:bg-[--color-accent] hover:text-[--color-bg-deep] transition-all" onclick="showMessage('Accesso con Apple simulato')">
+                            <i data-lucide="apple" class="w-5 h-5"></i>
+                        </button>
+                        <button class="p-3 bg-gray-800 rounded-full hover:bg-[--color-accent] hover:text-[--color-bg-deep] transition-all" onclick="showMessage('Accesso con Github simulato')">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <!-- Separatore "OPPURE" -->
+                    <div class="relative flex items-center">
+                        <div class="flex-grow border-t border-gray-700"></div>
+                        <span class="flex-shrink mx-4 text-gray-500 text-sm">OPPURE</span>
+                        <div class="flex-grow border-t border-gray-700"></div>
+                    </div>
+
+                    <!-- Campi Iscrizione (Solo Essenziali) -->
+                    <div class="relative">
+                        <input id="signup-email" type="email" placeholder="Email" oninput="validateSignup()" class="w-full p-3 bg-[--color-bg-deep] border border-gray-700 rounded-lg focus:ring-[--color-accent] focus:border-[--color-accent] outline-none transition-all pr-10" required>
+                        <i id="email-valid" data-lucide="check" class="absolute right-3 top-3.5 w-5 h-5 text-green-500 hidden"></i>
+                        <p id="email-error" class="text-xs text-red-500 mt-1 hidden flex items-center"><i data-lucide="alert-triangle" class="w-3 h-3 mr-1"></i> Formato email non valido.</p>
+                    </div>
+                    
+                    <div class="relative">
+                        <input id="signup-password" type="password" placeholder="Password (min. 8 caratteri)" oninput="validateSignup()" class="w-full p-3 bg-[--color-bg-deep] border border-gray-700 rounded-lg focus:ring-[--color-accent] focus:border-[--color-accent] outline-none transition-all" required>
+                        <div class="w-full h-1 bg-gray-700 mt-2 rounded-full">
+                            <div id="password-strength" class="h-full rounded-full transition-all duration-300" style="width: 0%;"></div>
+                        </div>
+                        <p id="password-error" class="text-xs text-red-500 mt-1 hidden flex items-center"><i data-lucide="alert-triangle" class="w-3 h-3 mr-1"></i> Troppo corta o debole.</p>
+                    </div>
+
+                    <!-- Pulsante ISCRIVITI (Disabilitato inizialmente) -->
+                    <button id="signup-button" class="cta-button w-full py-3 rounded-lg font-bold uppercase tracking-widest text-sm opacity-50 cursor-not-allowed" disabled onclick="showMessage('Iscrizione simulata!')">
+                        Iscriviti
+                    </button>
+                </div>
+
+            </div>
+
         </div>
     </div>
-
-    <div class="chat-widget">
-        <i class="fas fa-comment-dots"></i>
+    
+    <!-- Area per Messaggi (Sostituzione di alert()) -->
+    <div id="message-box" class="fixed bottom-4 right-4 p-4 bg-[--color-accent] text-[--color-bg-deep] rounded-lg shadow-xl opacity-0 transition-opacity duration-500 z-[100]">
+        Messaggio Placeholder.
     </div>
-</body>
-</html>
+
+    <!-- JavaScript per Interazioni Dinamiche e Gemini API -->
+    <script>
+        // Inizializza le icone Lucide
+        lucide.createIcons();
+
+        // Variabili Globali
+        const apiKey = ""; 
+        const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=" + apiKey;
+        
+        // Funzione per mostrare messaggi (sostituisce alert())
+        function showMessage(text) {
+            const msgBox = document.getElementById('message-box');
+            msgBox.textContent = text;
+            msgBox.classList.remove('opacity-0');
+            setTimeout(() => {
+                msgBox.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        // Funzione per la chiamata API con exponential backoff
+        async function fetchWithRetry(payload, maxRetries = 5) {
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        return await response.json();
+                    } else if (response.status === 429 && i < maxRetries - 1) {
+                        // Too many requests (Rate Limit) -> Retry
+                        const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        continue;
+                    } else {
+                        // Altri errori
+                        throw new Error(`API Error: ${response.status} ${response.statusText}`);
+                    }
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                         throw new Error("Errore API dopo i tentativi: " + error.message);
+                    }
+                    // Attesa e riprova per errori di rete o parsing
+                    const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+            }
+        }
+        
+        // ------------------
+        // GESTIONE GEMINI AI
+        // ------------------
+
+        async function generateContent(action) {
+            const inputTextarea = document.getElementById('ai-input-text');
+            const outputArea = document.getElementById('ai-output-area');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const userText = inputTextarea.value.trim();
+
+            if (!userText) {
+                showMessage("Inserisci un testo prima di usare l'AI.");
+                return;
+            }
+
+            loadingIndicator.classList.remove('hidden');
+            outputArea.textContent = 'Elaborazione in corso, attendere...';
+
+            let systemPrompt;
+            let userQuery;
+            
+            if (action === 'optimize') {
+                systemPrompt = "Agisci come un copywriter di marketing futuristico ed estremamente conciso. Il tuo obiettivo è prendere il testo fornito dall'utente e riassumerlo in una singola frase di grande impatto e quindi espanderlo in un breve paragrafo (massimo 4 frasi) con tono di voce high-tech e all'avanguardia. Utilizza sempre la lingua italiana.";
+                userQuery = `Ottimizza e sintetizza il seguente testo:\n\n---\n\n${userText}`;
+            } else if (action === 'continue') {
+                systemPrompt = "Agisci come un narratore di idee futuristiche. Il tuo compito è continuare il testo fornito dall'utente con un nuovo paragrafo che espanda l'idea in modo coerente e visionario. Mantieni il tono in lingua italiana.";
+                userQuery = `Continua il seguente testo con un paragrafo successivo:\n\n---\n\n${userText}`;
+            }
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+            };
+
+            try {
+                const result = await fetchWithRetry(payload);
+                const generatedText = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                if (generatedText) {
+                    outputArea.textContent = generatedText;
+                } else {
+                    outputArea.textContent = "Errore: Nessun testo generato dall'AI.";
+                }
+            } catch (error) {
+                outputArea.textContent = `Errore di connessione AI: ${error.message}`;
+                showMessage("Si è verificato un errore durante l'elaborazione AI. Riprova.");
+            } finally {
+                loadingIndicator.classList.add('hidden');
+                lucide.createIcons(); // Ricarica le icone (nel caso ce ne fossero nell'output)
+            }
+        }
+
+        // ------------------
+        // GESTIONE HEADER STICKY E BLUR
+        // ------------------
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+
+        // ------------------
+        // GESTIONE MODALE E TAB
+        // ------------------
+        const modalOverlay = document.getElementById('auth-modal-overlay');
+        const modal = document.getElementById('auth-modal');
+        const formLogin = document.getElementById('form-login');
+        const formSignup = document.getElementById('form-signup');
+        const tabLogin = document.getElementById('tab-login');
+        const tabSignup = document.getElementById('tab-signup');
+        let activeTab = 'login';
+
+        function toggleModal(open) {
+            if (open) {
+                // Apre la modale con transizione fluida
+                modalOverlay.classList.remove('modal-closed');
+                modal.classList.remove('modal-closed');
+                modalOverlay.classList.add('modal-open');
+                modal.classList.add('modal-open');
+                setTab(activeTab); // Assicura che il tab corretto sia visualizzato
+            } else {
+                // Chiude la modale con transizione fluida (inverso)
+                modalOverlay.classList.remove('modal-open');
+                modal.classList.remove('modal-open');
+                modalOverlay.classList.add('modal-closed');
+                modal.classList.add('modal-closed');
+            }
+        }
+
+        function setTab(tabName) {
+            activeTab = tabName;
+            
+            // Gestione Visualizzazione Form
+            formLogin.classList.toggle('hidden', tabName !== 'login');
+            formSignup.classList.toggle('hidden', tabName !== 'signup');
+
+            // Gestione Stile Tab
+            const accentClass = 'text-[--color-accent] border-[--color-accent]';
+            const defaultClasses = 'text-gray-500 border-transparent hover:text-[--color-text-light]';
+            
+            // FIX: Utilizzo di split(' ') e spread operator (...) per gestire più classi in una singola stringa,
+            // evitando l'errore 'InvalidCharacterError'.
+            if (tabName === 'login') {
+                tabLogin.classList.add(...accentClass.split(' ')); // Corretto
+                tabLogin.classList.remove(...defaultClasses.split(' '));
+                
+                tabSignup.classList.remove(...accentClass.split(' ')); // Corretto
+                tabSignup.classList.add(...defaultClasses.split(' '));
+            } else {
+                tabSignup.classList.add(...accentClass.split(' ')); // Corretto
+                tabSignup.classList.remove(...defaultClasses.split(' '));
+
+                tabLogin.classList.remove(...accentClass.split(' ')); // Corretto
+                tabLogin.classList.add(...defaultClasses.split(' '));
+            }
+        }
+        
+        // Inizializza la modale come chiusa all'avvio
+        document.addEventListener('DOMContentLoaded', () => {
+             // Forza la chiusura iniziale per applicare le classi di transizione
+            modalOverlay.classList.add('modal-closed');
+            modal.classList.add('modal-closed');
+            setTab('login'); // Imposta il tab predefinito
+        });
+
+        // ------------------
+        // GESTIONE VALIDAZIONE ISCRIZIONE IN TEMPO REALE (MOCK)
+        // ------------------
+        function validateSignup() {
+            const emailInput = document.getElementById('signup-email');
+            const passwordInput = document.getElementById('signup-password');
+            const signupButton = document.getElementById('signup-button');
+            const emailValidIcon = document.getElementById('email-valid');
+            const emailError = document.getElementById('email-error');
+            const passwordStrengthBar = document.getElementById('password-strength');
+            const passwordError = document.getElementById('password-error');
+            
+            let isEmailValid = false;
+            let isPasswordStrong = false;
+
+            // 1. Validazione Email (Mock)
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            isEmailValid = emailRegex.test(emailInput.value);
+
+            emailValidIcon.classList.toggle('hidden', !isEmailValid);
+            emailError.classList.toggle('hidden', isEmailValid || emailInput.value.length === 0);
+            
+            emailInput.classList.toggle('border-red-500', !isEmailValid && emailInput.value.length > 0);
+            emailInput.classList.toggle('border-gray-700', isEmailValid || emailInput.value.length === 0);
+
+            // 2. Validazione Password (Mock Forza)
+            const password = passwordInput.value;
+            let strength = 0;
+            if (password.length >= 8) strength += 25;
+            if (/[A-Z]/.test(password)) strength += 25;
+            if (/[a-z]/.test(password)) strength += 25;
+            if (/[0-9]/.test(password)) strength += 25;
+
+            passwordStrengthBar.style.width = strength + '%';
+            
+            if (strength <= 25) {
+                passwordStrengthBar.style.backgroundColor = 'red';
+                passwordError.classList.remove('hidden');
+                isPasswordStrong = false;
+            } else if (strength <= 75) {
+                passwordStrengthBar.style.backgroundColor = 'orange';
+                passwordError.classList.add('hidden');
+                isPasswordStrong = false; // Richiediamo il 100% per abilitare il pulsante
+            } else {
+                passwordStrengthBar.style.backgroundColor = 'green';
+                passwordError.classList.add('hidden');
+                isPasswordStrong = true;
+            }
+
+            // 3. Abilitazione Pulsante
+            const canEnableButton = isEmailValid && isPasswordStrong;
+            
+            signupButton.disabled = !canEnableButton;
+            signupButton.classList.toggle('opacity-50', !canEnableButton);
