@@ -2,510 +2,238 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+    <title>Sito web di Taraoui Fahd</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Taraoui Fahd</title>
     <style>
-        /* --- IMPOSTAZIONI GENERALI --- */
-        :root {
-            --primary-color: #333;
-            --secondary-color: #007bff;
-            --background-color: #ffffff;
-            --text-color: #444;
-            --light-gray: #f8f9fa;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            scroll-behavior: smooth;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: #fff url('bg-natura.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #222;
         }
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 0 20px;
-            overflow: hidden;
-        }
-
-        h1, h2, h3 {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-        
-        section {
-            padding: 60px 0;
-        }
-
-        section:nth-of-type(even) {
-            background-color: var(--light-gray);
-        }
-
-        /* --- HEADER E NAVIGAZIONE --- */
-        .header {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: fixed;
+        header {
             width: 100%;
-            top: 0;
-            z-index: 1000;
+            padding: 24px 0 8px 0;
+            background: rgba(255,255,255,0.85);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 10px 2%;
-        }
-
-        .main-nav {
-            display: flex;
-            gap: 25px;
-        }
-
-        .main-nav a {
-            text-decoration: none;
-            color: var(--primary-color);
-            font-weight: 500;
-            padding: 5px 0;
             position: relative;
-            transition: color 0.3s;
         }
-
-        .main-nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--secondary-color);
-            transition: width 0.3s;
+        .header-left, .header-right {
+            flex: 1;
         }
-
-        .main-nav a:hover {
-            color: var(--secondary-color);
-        }
-
-        .main-nav a:hover::after {
-            width: 100%;
-        }
-
-        .side-menus {
+        .header-center {
+            flex: 2;
             display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .side-menus .auth-links a {
-            text-decoration: none;
-            color: var(--primary-color);
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-        
-        .side-menus .auth-links a:hover {
-            background-color: var(--light-gray);
-        }
-
-        .menu-toggle {
-            cursor: pointer;
-            font-size: 24px;
-        }
-
-        /* --- SEZIONE HERO --- */
-        .hero {
-            height: 100vh;
-            background: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop') no-repeat center center/cover;
-            display: flex;
+            gap: 32px;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            position: relative;
         }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-content {
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            color: white;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            font-style: italic;
-            font-weight: 300;
-        }
-
-        .hero-btn {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 25px;
-            background-color: var(--secondary-color);
-            color: white;
+        .nav-link {
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: 500;
-            transition: transform 0.3s, background-color 0.3s;
+            color: #212121;
+            padding: 8px 20px;
+            border-radius: 3px;
+            transition: background 0.18s;
         }
-        
-        .hero-btn:hover {
-            background-color: #0056b3;
-            transform: translateY(-3px);
+        .nav-link:hover {
+            background: #e5ece9;
         }
-
-        /* --- SEZIONE "CHI SONO" --- */
-        #chi-sono {
-            text-align: center;
+        .dropdown {
+            position: absolute;
+            top: 34px;
+            right: 32px;
         }
-        #chi-sono h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        #chi-sono p {
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-        }
-
-        /* --- SEZIONE PORTFOLIO --- */
-        #portfolio h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-        }
-        
-        .portfolio-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-            margin-bottom: 60px;
-        }
-        
-        .portfolio-item:nth-of-type(even) .portfolio-image {
-            order: 2;
-        }
-        
-        .portfolio-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        
-        .portfolio-content h3 {
-            font-size: 2rem;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-        }
-
-        .portfolio-content p {
-            margin-bottom: 15px;
-        }
-        
-        .portfolio-content ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .portfolio-content ul li {
-            background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23007bff"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>') no-repeat left center;
-            padding-left: 30px;
-            margin-bottom: 10px;
-        }
-        
-        .portfolio-sub-item {
-            margin-top: 20px;
-        }
-
-        .portfolio-sub-item h4 {
-            margin-bottom: 5px;
-            font-size: 1.2rem;
-        }
-
-        /* --- SEZIONE CONTATTI --- */
-        #contatti {
-            text-align: center;
-        }
-        
-        #contatti h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
+        .dropdown select {
+            padding: 6px 12px;
+            font-size: 16px;
+            border-radius: 4px;
             border: 1px solid #ccc;
-            font-size: 1rem;
         }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
+        main {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
         }
-        
-        .submit-btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background-color: var(--secondary-color);
-            color: white;
+        .title-section {
+            text-align: center;
+            margin-top: 62px;
+        }
+        .title-section h1 {
+            font-size: 2.7em;
+            margin-bottom: 18px;
+        }
+        .title-section p {
+            font-size: 1.3em;
+            color: #235d39;
+            margin-bottom: 30px;
+        }
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #345e42;
+            color: #fff;
             border: none;
             border-radius: 5px;
-            font-size: 1.1rem;
+            font-size: 1.09em;
+            letter-spacing: 1px;
+            text-decoration: none;
             cursor: pointer;
-            transition: background-color 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: background 0.15s;
         }
-        
-        .submit-btn:hover {
-            background-color: #0056b3;
+        .cta-btn:hover {
+            background: #4cb076;
         }
-
-        /* --- FOOTER --- */
-        .footer {
-            background-color: var(--primary-color);
-            color: white;
+        .section {
+            background: rgba(255,255,255,0.87);
+            border-radius: 12px;
+            padding: 32px 22px;
+            margin: 68px auto 0 auto;
+            width: 95%;
+            max-width: 730px;
+            box-shadow: 0 0 14px rgba(0,0,0,0.06);
+        }
+        .section h2 {
+            font-size: 1.7em;
+            margin-bottom: 15px;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 18px;
+            background: #eef7f1;
+            padding: 24px;
+            border-radius: 10px;
+        }
+        .contact-form label {
+            font-weight: 500;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 9px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border: 1px solid #bbb;
+            font-size: 1em;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .contact-form button {
+            background: #345e42;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 11px 0;
+            font-size: 1.05em;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background: #236d4f;
+        }
+        footer {
+            background: #eaf3ee;
             text-align: center;
-            padding: 20px 0;
+            padding: 22px;
+            font-size: 1em;
+            margin-top: 54px;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 655px) {
+            header { flex-direction: column; padding: 12px; }
+            .header-center { gap: 14px; }
+            .section {padding: 12px 5px;}
         }
     </style>
 </head>
 <body>
-
-    <header class="header">
-        <div class="side-menus">
-            <span class="menu-toggle" id="sections-menu-toggle">☰</span>
-            </div>
-
-        <nav class="main-nav">
-            <a href="#chi-sono">Chi sono</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contatti">Contatti</a>
+    <header>
+        <div class="header-left">
+            <select onchange="location=this.value">
+                <option value="#">Sezioni</option>
+                <option value="#chi-sono">Chi sono</option>
+                <option value="#portfolio">Portfolio</option>
+                <option value="#contatti">Contatti</option>
+            </select>
+        </div>
+        <nav class="header-center">
+            <a class="nav-link" href="#chi-sono">Chi sono</a>
+            <a class="nav-link" href="#portfolio">Portfolio</a>
+            <a class="nav-link" href="#contatti">Contatti</a>
         </nav>
-
-        <div class="side-menus">
-            <div class="auth-links">
-                <a href="#login">Login</a>
-                <a href="#iscrizione">Iscrizione</a>
-            </div>
+        <div class="header-right dropdown">
+            <select onchange="location=this.value">
+                <option value="#">Login/Iscrizione</option>
+                <option value="login.html">Login</option>
+                <option value="iscrizione.html">Iscrizione</option>
+            </select>
         </div>
     </header>
-
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Sito web di Taraoui Fahd</h1>
-            <p>chi trova tempo da dedicare a ciò che ama crea un tesoro</p>
-            <a href="#chi-sono" class="hero-btn">Scopri di più</a>
-        </div>
-    </section>
-
     <main>
-        <section id="chi-sono">
-            <div class="container">
-                <h2>Chi Sono</h2>
-                <p>
-                    Sono un designer e sviluppatore appassionato, con l'obiettivo di trasformare le idee in realtà digitali straordinarie. La mia filosofia si basa sul minimalismo funzionale, dove ogni pixel ha uno scopo preciso.
-                </p>
-            </div>
+        <div class="title-section">
+            <h1>Sito web di Taraoui Fahd</h1>
+            <p>Chi trova tempo da dedicare a ciò che ama crea un tesoro</p>
+            <a href="#chi-sono" class="cta-btn">Scopri di più</a>
+        </div>
+
+        <section class="section" id="chi-sono">
+            <h2>Chi sono</h2>
+            <p>Sono un designer e sviluppatore appassionato, con l'obiettivo di trasformare le idee in realtà digitali straordinarie. La mia filosofia si basa sul minimalismo funzionale, dove ogni pixel ha uno scopo preciso.</p>
         </section>
 
-        <section id="portfolio">
-            <div class="container">
-                <h2>I Miei Servizi</h2>
-                
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="https://i.imgur.com/kS5x0gL.png" alt="Presentazioni Intuitive con IA">
-                    </div>
-                    <div class="portfolio-content">
-                        <h3>Presentazioni Intuitive con IA</h3>
-                        <div class="portfolio-sub-item">
-                            <h4>Creazione Rapida</h4>
-                            <p>Trasformazione delle idee in presentazioni professionali in pochi minuti. Specializzato come prompt engineer per creare i migliori prompt e layout, con grafici e visualizzazioni ottimali.</p>
-                        </div>
-                        <div class="portfolio-sub-item">
-                            <h4>Strutture Visive Coinvolgenti</h4>
-                            <p>Ogni slide viene ottimizzata per massimizzare l'impatto visivo. L'IA bilancia testo e immagini, creando composizioni armoniche che catturano l'attenzione.</p>
-                        </div>
-                        <div class="portfolio-sub-item">
-                            <h4>Elementi Interattivi</h4>
-                            <p>Integrazione di elementi dinamici come animazioni intelligenti, transizioni fluide e componenti interattivi che rendono le presentazioni memorabili.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="https://i.imgur.com/d8pXlUa.png" alt="Generazione Immagini in Alta Risoluzione">
-                    </div>
-                    <div class="portfolio-content">
-                        <h3>Generazione Immagini in Alta Risoluzione</h3>
-                        <p>Studio costante di nuove tecnologie di generazione immagini utilizzando algoritmi avanzati di deep learning per creare visual di qualità professionale in pochi secondi.</p>
-                        <h4>Perfetta per:</h4>
-                        <ul>
-                            <li>Campagne pubblicitarie e materiale promozionale</li>
-                            <li>Contenuti per social media e blog aziendali</li>
-                            <li>Mockup di prodotti e prototipi virtuali</li>
-                            <li>Illustrazioni personalizzate per presentazioni</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                         <img src="https://i.imgur.com/83D4y9p.png" alt="Database Vettoriale e Workflow Automation">
-                    </div>
-                    <div class="portfolio-content">
-                        <h3>Database Vettoriale IA e Workflow Automation</h3>
-                         <div class="portfolio-sub-item">
-                            <h4>Database Intelligenti</h4>
-                            <p>Utilizzo di database vettoriali che trasformano dati grezzi in rappresentazioni semantiche ricercabili, permettendo di trovare informazioni per similarità concettuale.</p>
-                        </div>
-                         <div class="portfolio-sub-item">
-                            <h4>Ricerca Semantica</h4>
-                            <p>Implementazione di motori di ricerca che comprendono il contesto e l'intento delle query, restituendo risultati pertinenti anche senza corrispondenza esatta delle parole chiave.</p>
-                        </div>
-                         <div class="portfolio-sub-item">
-                            <h4>Workflow Automation</h4>
-                            <p>Automatizzazione di processi ripetitivi come classificazione documenti e tagging contenuti per ridurre il lavoro manuale e minimizzare gli errori.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="https://i.imgur.com/X4J6yC4.png" alt="Creazione di Siti Web con IA">
-                    </div>
-                    <div class="portfolio-content">
-                        <h3>Creazione di Siti Web con Design Intelligente</h3>
-                        <p>Trasformo la creazione di siti web in un'esperienza semplice e gratificante.</p>
-                        <ul>
-                           <li>Interfacce utente generate automaticamente in base ai contenuti</li>
-                           <li>Ottimizzazione mobile e desktop simultanea</li>
-                           <li>Suggerimenti di design basati sulle tendenze attuali</li>
-                           <li>Personalizzazione avanzata dell'esperienza utente</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="https://i.imgur.com/85HhQ7M.png" alt="Prompt Engineering">
-                    </div>
-                    <div class="portfolio-content">
-                        <h3>Prompt Engineer</h3>
-                        <p>IA ottimizzate e specializzate con ruoli specifici, con ottimizzazione e feedback giornaliero. Capacità di fare report di vendite e gestione monetaria aziendale.</p>
-                        <h4>Punti di Forza:</h4>
-                        <ul>
-                            <li>Formulazione di prompt efficaci, chiari e concisi</li>
-                            <li>Test e iterazione per migliorare l'efficacia delle risposte IA</li>
-                            <li>Identificazione e mitigazione dei bias nei modelli IA</li>
-                            <li>Adattamento dei prompt per diverse IA (GPT-4, Claude, Gemini)</li>
-                            <li>Traduzione degli obiettivi aziendali in istruzioni precise per l'IA</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="https://i.imgur.com/lM5zF8F.png" alt="Agenti AI Personalizzati">
-                    </div>
-                    <div class="portfolio-content">
-                        <h3>Agenti AI Personalizzati (Work in Progress)</h3>
-                        <div class="portfolio-sub-item">
-                            <h4>Assistenti Virtuali Aziendali</h4>
-                            <p>Sviluppo di chatbot intelligenti che rappresentano il tono e i valori del tuo brand, offrendo risposte accurate 24/7.</p>
-                        </div>
-                        <div class="portfolio-sub-item">
-                            <h4>Integrazione CRM</h4>
-                            <p>Gli agenti si integrano con i sistemi CRM esistenti per offrire un'assistenza contestuale e rilevante.</p>
-                        </div>
-                        <div class="portfolio-sub-item">
-                            <h4>Personalizzazione Avanzata</h4>
-                            <p>Algoritmi di machine learning analizzano le conversazioni per adattare il tono e le risposte alle preferenze di ogni cliente.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <section class="section" id="servizi">
+            <h2>Servizi Offerti</h2>
+            <ul>
+                <li>Presentazioni intuitive con IA: trasforma idee in presentazioni professionali e visivamente coinvolgenti in pochi minuti.</li>
+                <li>Creazione immagini in alta risoluzione con algoritmi avanzati deep learning.</li>
+                <li>Database intelligenti e automazione workflow aziendale.</li>
+                <li>Sviluppo di siti web ottimizzati e personalizzati secondo le ultime tendenze digitali.</li>
+                <li>Automazione e assistenti virtuali aziendali (chatbot, CRM integrati).</li>
+                <li>Implementazione IA nei processi decisionali aziendali per aumentare efficienza e competitività.</li>
+                <li>Formulazione e ottimizzazione prompt per IA, gestione e reportistica aziendale.</li>
+                <li>Spiegazioni e dimostrazioni pratiche sull’IA: reti neurali, riconoscimento immagini, NLP e automazione profonda.</li>
+            </ul>
         </section>
 
-        <section id="contatti">
-            <div class="container">
-                <h2>Contattami</h2>
-                <p>Hai un'idea o un progetto in mente? Compila il form qui sotto.</p>
-                <form class="contact-form" action="#" method="post">
-                    <div class="form-group">
-                        <label for="name">Nome</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Messaggio</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Invia Messaggio</button>
-                </form>
-            </div>
+        <section class="section" id="portfolio">
+            <h2>Portfolio</h2>
+            <p>
+                Benvenuto nel mio portfolio di soluzioni basate sull’intelligenza artificiale.<br>
+                Specializzato come prompt engineer, creo layout, grafici e visualizzazioni ottimali per comunicare efficacemente il messaggio.<br>
+                Mi occupo di:
+                <ul>
+                    <li>Creazione presentazioni e strutture visive coinvolgenti</li>
+                    <li>Implementazione elementi interattivi</li>
+                    <li>Generazione immagini e mockup professionali in pochi secondi</li>
+                    <li>Ottimizzazione mobile e desktop</li>
+                </ul>
+                <br>
+                <!-- Qui aggiungi le immagini dal PDF mantenendo fedelmente la grafica -->
+                <img src="portfolio-image1.jpg" alt="Portfolio immagine esempio" style="width:100%;border-radius:14px;margin-bottom:12px;"> <!-- Sostituisci con immagine reale dal PDF -->
+            </p>
+        </section>
+
+        <section class="section" id="contatti">
+            <h2>Contatti</h2>
+            <form class="contact-form" action="mailto:tuamail@example.com" method="POST" enctype="text/plain">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="info">Messaggio/Info personali:</label>
+                <textarea id="info" name="info" rows="4" required></textarea>
+                <button type="submit">Invia</button>
+            </form>
         </section>
     </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Taraoui Fahd. Tutti i diritti riservati.</p>
-        </div>
+    <footer>
+        © 2025 Taraoui Fahd. Portfolio e contatti attivi.<br>
+        Rispetta la privacy e i tuoi dati vengono protetti.
     </footer>
-
-    <script>
-        // Semplice script per rendere i link di navigazione più fluidi
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
